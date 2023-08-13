@@ -1,0 +1,39 @@
+{% extends 'blog_page/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head%}
+    <link rel="stylesheet" href="{% static 'blog_page/main.css' %}" type="text/css">
+{% endblock%}
+
+{% block body%}
+
+    <div>
+        <h1> Login Here!</h1><br>
+
+        {% for message in messages %}
+        
+            <h3> ( {{ message }} ) </h3>
+        {% endfor %}
+        <form method="POST" >
+            {% csrf_token %}
+
+            <fieldset class = "form-group">
+                Username : {{ form.username }}
+                <br> <br> <br>
+                Password : {{ form.password1 }}
+
+            </fieldset>
+
+            <div class="form-group">
+                <button class = 'text-primary ' type="submit"> Login </button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-right6"> Need An Account </small> <a class = "btn btn-primary pull-right text-right" href="{% url 'register-page' %}"> Sign Up </a>
+
+        </div>
+        
+    </div><br><br>
+
+  {% endblock %}

@@ -1,0 +1,28 @@
+
+
+
+
+.mainhead{
+    background-color:plum;
+}
+
+.input-group{
+    padding: 10px;
+ 
+    margin: auto;
+    width: 50%;
+}
+
+.button-search{
+    font-size: larger;
+}
+
+.search-content{
+    top: 100px;
+    padding-right: 20px;
+    width:10%;
+    height:10%;
+    position: absolute;
+    left: 80px;
+    top: 20px;
+}

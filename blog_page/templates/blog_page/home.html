@@ -1,0 +1,54 @@
+{% extends 'blog_page/base.html' %}
+{% load static %}
+
+{% block head %}  
+    <title> Stress and Strain </title>
+    <link rel="stylesheet" href="{% static 'blog_page/main.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %} 
+
+    <form method="post" style="position:absolute;right:100px;top:20px;" >
+        {% csrf_token %}
+        <input  type="search" id="form1"  style="width: 45x; height: 35px;" name="input-search" placeholder="search content here!"/>
+            
+        <h3> <button type="submit"> search </button></h3>
+
+    </form>
+
+
+    {% for post in posts %}
+        <h1> <img src="{{ post.author.image.image.url }}" class="rounded-circle article-img" width="100" height="100"> <a href="#"> {{ post.author }}</a> </h1>
+        <h1> Title : {{ post.title }} <strong> <a href="{% url 'post_detail-page' post.id %}">{{post.content}} </a></strong></h1>
+        <h1> Time Posted : {{post.date_posted}} </h1>
+        <br>
+    {% endfor %}
+
+    {% if posts.has_other_pages %}
+        <ul style="text-align: center;">
+            <!-- This is for previous pages -->
+            {% if posts.has_previous %}
+                <li class="btn btn-outline-info mb-4" > <a href="?page={{ posts.previous_page_number }}"> Previous </a></li>
+            {% else %}
+                <li class="disable"> <span> &laquo;</span>  </li>
+            {% endif %}
+            
+            <!-- This is for Current pages -->
+            {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                    <li class="btn btn-outline-info mb-4" > <span> {{i}} <span class="sr-only"> (current) </span></span></li>
+                {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                    <li class="btn btn-outline-info mb-4" ><a href="?page={{i}}"> {{i}}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- This is for Next pages -->
+            {% if posts.has_next %}
+                <li class="btn btn-outline-info mb-4" > <a href="?page={{posts.next_page_number }}"> Next</a></li>
+            {% else %}
+                <li class="disable"> <span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

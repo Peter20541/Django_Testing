@@ -1,0 +1,24 @@
+{% extends 'blog_page/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block body%}
+
+    <div>
+        <h1> Update Username!</h1><br>
+        <form method="POST" >
+            {% csrf_token %}
+
+            <fieldset class = "form-group">
+                {{ form }}
+
+            </fieldset>
+
+            <div class="form-group">
+                <button class = 'text-primary ' type="submit"> Update </button>
+            </div>
+        </form>
+        
+    </div>
+
+{% endblock %}

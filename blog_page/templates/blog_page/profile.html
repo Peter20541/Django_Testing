@@ -1,0 +1,32 @@
+{% extends 'blog_page/base.html' %}
+{% load crispy_forms_tags %}
+{% block body%}
+    {% for message in messages %}
+    <h1> <strong> {{message}}</strong> </h1>
+    {% endfor %}
+
+    <img class="rounded-circle article-img"  width="100" height="100"  src="{{ user.image.image.url }}" >    <!-- user(which is the cuurent logged in user).image(model where the image field is located).image(variable given to the image class).url(which is the complete path) -->
+
+    <h1> Username : {{ user}}</h1> <b> <b></b>
+    
+    <h1> Email : {{ user.email}}</h1>
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <fieldset class = "form-group">
+                <br><br>
+                <legend class="h1 text-secondary"><strong>Update Profile </strong>  </legend>
+                {{ user_email_update|crispy }}
+                {{ image_update|crispy }}
+            </fieldset>
+
+            <div class="form-group">
+                <button class = 'text-primary ' type="submit"> Update </button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+
+{% endblock%}

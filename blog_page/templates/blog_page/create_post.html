@@ -1,0 +1,27 @@
+{% extends 'blog_page/base.html' %}
+{% load crispy_forms_tags %}
+{% block head%}
+
+
+    {% if title%}
+    <title></title>
+    {% else%}
+        <title> Create Post </title>
+    {% endif %}
+{% endblock head %}
+
+
+{% block body%}
+
+    <div class="profile_input">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <div class="form-group">
+                <button class = 'btn-primary btn-lg' type="submit"> Post </button>
+            </div>
+        </form>
+        
+    </div>
+
+{% endblock%}

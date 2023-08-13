@@ -1,0 +1,14 @@
+{% extends 'blog_page/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block body%}
+    <h2> Are you sure you want to delete <strong> "{{post_detail.content}}" </strong></h2>
+    <a href="{%url 'home-page' %}"> <button> Cancel </button> </a>
+    <form method = 'POST'>
+        {% csrf_token %}
+        
+        <input type="submit" value="Delete" style="position:absolute;right:1550px;top:220px;">
+    </form>
+
+{% endblock%}

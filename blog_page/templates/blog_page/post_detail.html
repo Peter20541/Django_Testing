@@ -1,0 +1,23 @@
+{% extends 'blog_page/base.html' %}
+
+{% block head %}  
+<title> Stress and Strain </title>
+{% endblock %}
+
+{% block body %} 
+    <h1> <img src="{{ post.author.profile.image.url }}" class="rounded-circle article-img" width="100" height="100"> <a href="#"> {{ post.author }}</a> </h1>
+    <h1>  <strong> "{{post_detail.author}}" </strong></h1>
+    <h1> Content : <strong> {{post_detail.content}} </strong></h1>
+
+    
+    {% if request.user == post_detail.author %}
+        <br> <hr> <h2> <strong> Do you want to up Delete or Update</strong> </h2>
+        <br> <button> <a class = 'btn h1 text-secondary' href="{%url 'home-page' %}"> Go Back </a></button>
+        <button> <a class = 'btn h1 text-secondary' href="{%url 'delete_post-page' post_detail.id %}"> Delete</a> </button>
+        <button> <a class = 'btn h1 text-secondary' href="{%url 'update_post-page' post_detail.id %}"> Update</a> </button>
+    {% else %}
+        <br> <hr><button> <a class = 'btn h1 text-secondary' href="{%url 'home-page' %}"> Go Back </a></button>
+    {% endif %}
+
+
+{% endblock %}
